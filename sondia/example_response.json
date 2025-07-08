@@ -1,0 +1,64 @@
+{
+  "id": "ebdf8d70-3047-4f22-aba0-19136ebd99f8",
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "index": 0,
+      "message": {
+        "content": "Tu color favorito es el azul [doc1][doc2].",
+        "role": "assistant",
+        "end_turn": true,
+        "context": {
+          "citations": [
+            {
+              "content": "mi color favorito es el azul",
+              "title": null,
+              "url": null,
+              "filepath": "https://sondiastoragetest.blob.core.windows.net/blobsondiatest/sample_cmp/apuntes.txt",
+              "chunk_id": "0"
+            },
+            {
+              "content": "toda la información pendiente de \nvalidación ese mismo día para la revisión de Mario, pero no hemos recibido sus comentarios al 27/06, de todas formas, esto no impacta en el inicio del desarrollo de esta herramienta.\n\nSistemas y datos Sergio Díaz Revisión de antecedentes: Demo GrabrieIA 03 Junio\n\nEstimación de Recursos Dafne Herreros y Mario Lagos Levantamiento fuentes de información \nIndagación proceso AS-IS y prototipo\nValidación proceso AS-IS y TO BE\nValidación TO BE y Prototipo final*\n\n04 Junio\n16 Junio\n18 Junio\n24 Junio\n\nGeomecánica Cristina Bizama\nLorena Burgos\n\nLevantamiento fuentes de información\nRevisión de prototipo \nValidación entendimiento y KPIs\n\n09 Junio\n10 Junio\n13 Junio\n\nLorena Burgos, Juan Francisco \nAmenábar, Stefano Contardo, \nDavid Antillo\n\nValidación final prototipo y KPIs 18 Junio\n\nGerencia PyD Claudia Monreal KPIs y prototipo 18 Junio\n\nTI Francisco Bastías Alineamiento de condiciones técnicas previas al diseño 04 Junio\n\nActor\n\n\n\nDe acuerdo a las reuniones e interacciones colaborativas con el equipo \nde CMP, logramos crear un prototipo personalizado del Modelo IA para \nconsultas de sondajes\n\n1.- El usuario ingresa al panel general donde puede comenzar a realizar preguntas sobre sondajes\n\n2.- En el menú \npuede crear una \n\nnueva \nconversación, ver \n\nsus \nconversaciones \n\npasadas, ver \ninformación que \n\nse ha actualizado \nen las carpetas, \n\ninformación \nsobre la \n\nherramienta y \ncerrar su sesión.\n\n\n\nDe acuerdo a las reuniones e interacciones colaborativas con el equipo \nde CMP, logramos crear un prototipo personalizado del Modelo IA para \nconsultas de sondajes\n\n3.- Cuando el usuario decide ver “Información y datos” se despliega el listado de información añadida a las fuentes de datos a \npartir de lo más reciente. También puede volver al panel principal.\n\n\n\nDe acuerdo a las reuniones e interacciones colaborativas con el equipo \nde CMP, logramos crear un prototipo personalizado del Modelo IA para \nconsultas de sondajes",
+              "title": "2025-CMP-PN-Casos de Uso Modelo IA - 27.06.2025.pdf",
+              "url": null,
+              "filepath": "https://sondiastoragetest.blob.core.windows.net/blobsondiatest/Iniciativa%202%20-%20Geociencias/Entregable%20Aurys/2025-CMP-PN-Casos%20de%20Uso%20Modelo%20IA%20-%2027.06.2025.pdf",
+              "chunk_id": "0"
+            },
+            {
+              "content": "Test)\n\nValidación con líder del proceso y Gte PyD\n\nPruebas y aceptación de usuario\n\nEvaluación integral del diseño Geomecánica/Estimación de recursos\ny Gcia PyD\n\nGcia PyD  / TI\n\nActividades Responsable CMP requerido\n\nTI\n\nGeomecánica/Estimación de recursos\n\nSeguimiento y Gestión del cambio\n\nEntrega de Diseño UX/UI, requerimientos para despliegue y fichas de proceso\n\nDespliegue en ambiente de QA de CMP TI/ Sistemas datos &amp; costos\n\nSistemas datos &amp; costos\n\nGeomecánica/Est de recursos\n y Gcia PyD\n\nGeomecánica/Est de recursos\n y Gcia PyD\n\nNota: Se agendaran una reunión con Francisco Bastías cada 2 semanas para asegurar que el desarrollo de la solución se mantenga alineada con los requerimientos \nde TI\n\n\n\nContenido\n\nA. Introducción\n\nB. Análisis de Stakeholders\n\nC. Descripción\n\nD. Requerimientos\n\nE. Flujo Uso de Casos\n\nF. Análisis de Información Saludable\n\nG. Diagrama de Arquitectura\n\nH. Línea de Tiempo y Habilitadores \n\nI. Especificaciones de la Interfaz del Usuario\n\nJ. Anexos\n\nK. Glosario\n\n\n\nA partir de las iteraciones en diversas reuniones con los usuarios se \nlogró obtener los criterios de aceptación sobre las funcionalidades del \nprototipo de la herramienta\n\nÁrea Tipo de validación Fecha\n\nUna vez que el prototipo ya se encuentre desplegado, se comenzarán las pruebas de aceptación del usuario (UAT).\n* La validación de brechas/mitigadores y prototipo final quedó pendiente del lado de Mario Lagos, ya que la reunión del 24/06 fue interrumpida por un corte de internet en CMP, enviamos toda la información pendiente de \nvalidación ese mismo día para la revisión de Mario, pero no hemos recibido sus comentarios al 27/06, de todas formas, esto no impacta en el inicio del desarrollo de esta herramienta.\n\nSistemas y datos Sergio Díaz Revisión de antecedentes: Demo GrabrieIA 03 Junio\n\nEstimación de Recursos Dafne Herreros y Mario Lagos Levantamiento fuentes de información \nIndagación proceso AS-IS y prototipo\nValidación proceso AS-IS y TO BE\nValidación TO BE y Prototipo final*",
+              "title": "2025-CMP-PN-Casos de Uso Modelo IA - 27.06.2025.pdf",
+              "url": null,
+              "filepath": "https://sondiastoragetest.blob.core.windows.net/blobsondiatest/Iniciativa%202%20-%20Geociencias/Entregable%20Aurys/2025-CMP-PN-Casos%20de%20Uso%20Modelo%20IA%20-%2027.06.2025.pdf",
+              "chunk_id": "1"
+            },
+            {
+              "content": "LITO\n\n\t\t\t\t\t\tDESCRIPCION MACROSCOPICA DE TESTIGOS\t\t\t\t\t\t\t\t\t\t\t\t\tPLANTILLA TIPO F\t\t\t\t\t\t\t\tPROYECTO \t\t\t\t\tLCS1701\t\t\t\t\tLONGITUD\t\t\t\tDESCRITO POR:\t\t\t\t\t\t\t\t\tFECHA DESCRIPCION:\t\t\t\t\t\tDIGITADO POR:\t\t\t\t\t\tFECHA DIGITACION:\t\t\t\tOBSERVACIONES DIGITADOR:\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tMLC\t\t\t\t\t\t\t\t\t\t\t\t\t\tMaximiliano Mora (7.15-99.15 m); Luis Parra (99.15-434.15 m)\t\t\t\t\t\t\t\t\t18/04/2022\t\t\t\t\t\tMaximiliano Mora (7.15-99.15 m); \nLuis Parra (99.15-434.15 m)\n\n\tTRAMOS \t\tLEY VISUAL\tMINERALIZACION  (4)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tALTERACION  (4)\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTIPO DE ROCA  (1)\tTEXT./ ESTR.  (2)\tTEXT./ ESTR.  (2b)\tESTRUC  (3)\tUG\tOBSERVACIONES\n\tMUESTREO\t\t\tMAGNETITA\t\t\tMARTITA\t\t\tHEMATITA\t\t\tPIRITA\t\t\tMUSHKETOVITA\t\t\tCALCITA\t\t\tEPIDOTA\t\t\tSERICITA\t\t\tARCILLA\t\t\tFELD K\t\t\tFELD Na\t\t\tCLORITA\t\t\tSILICE\t\t\tACTINOLITA\t\t\tBIOTITA\t\t\tLIMONITA\t\t\tYESO\t\t\tAPATITO\t\t\tTREMOLITA\t\t\tESCAPOLITA\n\tDesde \tHasta\t%Fe\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\tINT\tOCU1\tOCU2\n\t7.15\t7.7\t1\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t5\tREM\t\t\t\t\t\t\t\t\t\t\t\t\t\tGRV\t\t\t\tGRV\tse observa roca muy meteorizada, probable horizonte suelo-roca\n\t7.7\t15.65\t15\t2\tDIS\t\t\t\t\t4\tREM\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t5\tREM\t\t\t\t\t\t\t\t\t\t\t\t\t\tAND\tPOR\t\tFRA\tDIS\tse observa roca de color pardo rojizo, muy fracturada y alterada a limonitas\t\tTIPO DE ROCA   (1)\t\t\t  TEXTURA/ESTRUCRURA  (2 y 2b)\t\t\t\t\t\tESTRUCTURAS  (3)\t\t\tMINERALOGIA ALTERACION/MINERALIZACION   (4)\t\t\t\t\t\t\t\t\t\tPROYECTO\tCODIGO\t\tSUBZONA\tCOD_SUBZONA\n\t15.65\t25.65\t0\t\t\t\t\t\t\t4\tREM\t\t\t\t\t\t\t\t2\tVTI\t\t\t\t\t\t\t\t\t\t\t\t\t\t1\tREM\t\t\t\t\t\t\t\t\t\t\t\t\t\t4\tREM\t\t\t\t\t\t\t\t\t\t\t\t\t\tAND\tPOR\t\t\tAND\tse mantiene alteracion rojiza de la masa/matriz\t\tADM\tADAMELITA\t\tVIT\tVITREA\t\t\t\t\tFLL\tFALLA\t\tINTENSIDAD\t\t\t\t\tOCURRENCIA\t\t\t\t\tAdrianita\tADR\t\tAbanderada\tABA",
+              "title": "Re_mapeo_LCS1701_v1.xlsx",
+              "url": null,
+              "filepath": "https://sondiastoragetest.blob.core.windows.net/blobsondiatest/Iniciativa%202%20-%20Geociencias/Geolog%C3%ADa/Ejemplo/LCS-1701/LCS-1701/09%20Remapeos/Re_mapeo_LCS1701_v1.xlsx",
+              "chunk_id": "0"
+            },
+            {
+              "content": "TI\nEquipo de Sistemas y Datos\n\nResponsable de la infraestructura tecnológica \nCMP.\n\nHabilitador\n\n\n\nContenido\n\nA. Introducción\n\nB. Análisis de Stakeholders\n\nC. Descripción\n\nD. Requerimientos\n\nE. Flujo Uso de Casos\n\nF. Análisis de Información Saludable\n\nG. Diagrama de Arquitectura\n\nH. Línea de Tiempo y Habilitadores \n\nI. Especificaciones de la Interfaz del Usuario\n\nJ. Anexos\n\nK. Glosario\n\n\n\nVisión General del Modelo IA Gen para Sondajes\n\nLa visión del Modelo IA Gen para Sondajes es agilizar los \ntiempos de respuesta ante solicitudes de información \nespecífica de sondajes por medio de un modelo de Inteligencia \nArtificial que la consolida a partir de los distintos repositorios \nactuales. Este modelo es desarrollado a la medida para CMP a \ntravés de espacios de co-creación.\n\nLa iniciativa permite consolidar la información de \nsondajes para facilitar una búsqueda ágil y obtener \nrespuestas rápidas.\n\nDocumento de Trabajo\n\n\n\nMaximizar sustentablemente el valor del negocios\n\nObjetivos CMPFocos Estratégicos\n\n1\n\n2\n\nObjetivos GPD\n\n1\n\nEstimación de Recursos y Geomecánica requieren optimizar la búsqueda \nde información para responder rápidamente ante solicitudes específicas\n\nPosicionarse como un proveedor de alta calidad2 Instalar capacidad de crecimiento\n\nOptimizar sustentablemente el modelo \norganizacional\n\nKPIs a Impactar\n\nTiempo del equipo (horas) dedicado a la \nbúsqueda de respuestas y consolidación de \ninformación en los distintos repositorios por \nmes.\n\nTotal\n\nGeomecánica(1)\n\nEstimación de \nRecursos(2)\n\nAS IS TO BE % de Mejora (3)\n\n54 38 30%\n\n44 31 30%\n\n10 7 30%\n\nBeneficios Adicionales \n\nNuestra herramienta mejora la gobernanza de datos \na través de:\n\n✓ Mayor trazabilidad de la información en el centro \ndocumental.\n\n✓ Análisis de información en diversos formatos.\n\n✓ Entrega y respuesta de información ágil.\n\n✓ Facilitar la verificación de la completitud de las \ncarpetas de sondajes.\n\n✓ Automatización de la búsqueda y extracción de \ninformación.\n\nNota:",
+              "title": "2025-CMP-PN-Casos de Uso Modelo IA - 27.06.2025.pdf",
+              "url": null,
+              "filepath": "https://sondiastoragetest.blob.core.windows.net/blobsondiatest/Iniciativa%202%20-%20Geociencias/Entregable%20Aurys/2025-CMP-PN-Casos%20de%20Uso%20Modelo%20IA%20-%2027.06.2025.pdf",
+              "chunk_id": "2"
+            }
+          ],
+          "intent": "[\"What is my favorite color?\"]"
+        }
+      }
+    }
+  ],
+  "created": 1751989926,
+  "model": "gpt-4.1-nano",
+  "object": "extensions.chat.completion",
+  "system_fingerprint": "fp_68472df8fd",
+  "usage": {
+    "completion_tokens": 20,
+    "prompt_tokens": 6445,
+    "total_tokens": 6465
+  }
+}
+
