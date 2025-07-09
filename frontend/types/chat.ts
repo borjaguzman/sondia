@@ -8,11 +8,12 @@ export interface Message {
 export type Role = 'assistant' | 'user';
 
 export interface ChatBody {
-  model: string;
-  system: string;
-  prompt: string;
-  options?: 
-    { temperature: number }
+  messages: Message[];
+  model?: string;
+  system?: string;
+  options?: {
+    temperature?: number;
+  };
 }
 
 export interface Conversation {

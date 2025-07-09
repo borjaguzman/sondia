@@ -64,7 +64,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSend = useCallback(
-    async (message: Message, deleteCount = 0 ) => {
+    async (message: Message, deleteCount = 0) => {
       if (selectedConversation) {
         let updatedConversation: Conversation;
         if (deleteCount) {
@@ -89,16 +89,11 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
         homeDispatch({ field: 'loading', value: true });
         homeDispatch({ field: 'messageIsStreaming', value: true });
         const chatBody: ChatBody = {
-          model: updatedConversation.model.name,
-          system: updatedConversation.prompt,
-          prompt: updatedConversation.messages.map(message => message.content).join(' '), //TODO: Agregar mecanica que ordena bien los mensajes entre user y bot
-          options: { temperature: updatedConversation.temperature },
+          messages: updatedConversation.messages, //TODO: Agregar mecanica que ordena bien los mensajes entre user y bot
         };
         const endpoint = getEndpoint();
         let body;
-        body = JSON.stringify({
-          ...chatBody,
-        });
+        body = JSON.stringify({ ...chatBody });
         const controller = new AbortController();
         const response = await fetch(endpoint, {
           method: 'POST',
@@ -106,7 +101,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
             'Content-Type': 'application/json'
           },
           signal: controller.signal,
-          body,
+          body: body,
         });
         if (!response.ok) {
           homeDispatch({ field: 'loading', value: false });
@@ -137,29 +132,29 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
           let isFirst = true;
           let text = '';
           while (!done) {
-          if (stopConversationRef.current === true) {
-            controller.abort();
-            done = true;
-            break;
-          }
-          const { value, done: doneReading } = await reader.read();
-          done = doneReading;
-          const chunkValue = decoder.decode(value);
-          text += chunkValue;
-          if (isFirst) {
-            isFirst = false;
-            const updatedMessages: Message[] = [
-              ...updatedConversation.messages,
-              { role: 'assistant', content: chunkValue },
-            ];
-            updatedConversation = {
-              ...updatedConversation,
-              messages: updatedMessages,
-            };
-            homeDispatch({
-              field: 'selectedConversation',
-              value: updatedConversation,
-            });
+            if (stopConversationRef.current === true) {
+              controller.abort();
+              done = true;
+              break;
+            }
+            const { value, done: doneReading } = await reader.read();
+            done = doneReading;
+            const chunkValue = decoder.decode(value);
+            text += chunkValue;
+            if (isFirst) {
+              isFirst = false;
+              const updatedMessages: Message[] = [
+                ...updatedConversation.messages,
+                { role: 'assistant', content: chunkValue },
+              ];
+              updatedConversation = {
+                ...updatedConversation,
+                messages: updatedMessages,
+              };
+              homeDispatch({
+                field: 'selectedConversation',
+                value: updatedConversation,
+              });
             } else {
               const updatedMessages: Message[] =
                 updatedConversation.messages.map((message, index) => {
@@ -180,7 +175,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                 value: updatedConversation,
               });
             }
-          } 
+          }
           saveConversation(updatedConversation);
           const updatedConversations: Conversation[] = conversations.map(
             (conversation) => {
@@ -324,121 +319,121 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
 
   return (
     <div className="relative flex-1 overflow-hidden bg-white dark:bg-[#343541]">
-        <>
-          <div
-            className="max-h-full overflow-x-hidden"
-            ref={chatContainerRef}
-            onScroll={handleScroll}
-          >
-            {selectedConversation?.messages.length === 0 ? (
-              <>
-                <div className="mx-auto flex flex-col space-y-5 md:space-y-10 px-3 pt-5 md:pt-12 sm:max-w-[600px]">
-                  <div className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
-                    {models.length === 0 ? (
-                      <div>
-                        <Spinner size="16px" className="mx-auto" />
-                      </div>
-                    ) : (
-                      'Sondia'
-                    )}
-                  </div>
-
-                  {models.length > 0 && (
-                    <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600">
-                      <ModelSelect />
-
-                      <SystemPrompt
-                        conversation={selectedConversation}
-                        prompts={prompts}
-                        onChangePrompt={(prompt) =>
-                          handleUpdateConversation(selectedConversation, {
-                            key: 'prompt',
-                            value: prompt,
-                          })
-                        }
-                      />
-
-                      <TemperatureSlider
-                        label={t('Temperature')}
-                        onChangeTemperature={(temperature) =>
-                          handleUpdateConversation(selectedConversation, {
-                            key: 'temperature',
-                            value: temperature,
-                          })
-                        }
-                      />
+      <>
+        <div
+          className="max-h-full overflow-x-hidden"
+          ref={chatContainerRef}
+          onScroll={handleScroll}
+        >
+          {selectedConversation?.messages.length === 0 ? (
+            <>
+              <div className="mx-auto flex flex-col space-y-5 md:space-y-10 px-3 pt-5 md:pt-12 sm:max-w-[600px]">
+                <div className="text-center text-3xl font-semibold text-gray-800 dark:text-gray-100">
+                  {models.length === 0 ? (
+                    <div>
+                      <Spinner size="16px" className="mx-auto" />
                     </div>
+                  ) : (
+                    'Sondia'
                   )}
                 </div>
-              </>
-            ) : (
-              <>
-                <div className="sticky top-0 z-10 flex justify-center border border-b-neutral-300 bg-neutral-100 py-2 text-sm text-neutral-500 dark:border-none dark:bg-[#444654] dark:text-neutral-200">
-                  {t('Model')}: {selectedConversation?.model.name} | {t('Temp')}
-                  : {selectedConversation?.temperature} |
-                  <button
-                    className="ml-2 cursor-pointer hover:opacity-50"
-                    onClick={handleSettings}
-                  >
-                    <IconSettings size={18} />
-                  </button>
-                  <button
-                    className="ml-2 cursor-pointer hover:opacity-50"
-                    onClick={onClearAll}
-                  >
-                    <IconClearAll size={18} />
-                  </button>
-                </div>
-                {showSettings && (
-                  <div className="flex flex-col space-y-10 md:mx-auto md:max-w-xl md:gap-6 md:py-3 md:pt-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
-                    <div className="flex h-full flex-col space-y-4 border-b border-neutral-200 p-4 dark:border-neutral-600 md:rounded-lg md:border">
-                      <ModelSelect />
-                    </div>
+
+                {models.length > 0 && (
+                  <div className="flex h-full flex-col space-y-4 rounded-lg border border-neutral-200 p-4 dark:border-neutral-600">
+                    <ModelSelect />
+
+                    <SystemPrompt
+                      conversation={selectedConversation}
+                      prompts={prompts}
+                      onChangePrompt={(prompt) =>
+                        handleUpdateConversation(selectedConversation, {
+                          key: 'prompt',
+                          value: prompt,
+                        })
+                      }
+                    />
+
+                    <TemperatureSlider
+                      label={t('Temperature')}
+                      onChangeTemperature={(temperature) =>
+                        handleUpdateConversation(selectedConversation, {
+                          key: 'temperature',
+                          value: temperature,
+                        })
+                      }
+                    />
                   </div>
                 )}
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="sticky top-0 z-10 flex justify-center border border-b-neutral-300 bg-neutral-100 py-2 text-sm text-neutral-500 dark:border-none dark:bg-[#444654] dark:text-neutral-200">
+                {t('Model')}: {selectedConversation?.model.name} | {t('Temp')}
+                : {selectedConversation?.temperature} |
+                <button
+                  className="ml-2 cursor-pointer hover:opacity-50"
+                  onClick={handleSettings}
+                >
+                  <IconSettings size={18} />
+                </button>
+                <button
+                  className="ml-2 cursor-pointer hover:opacity-50"
+                  onClick={onClearAll}
+                >
+                  <IconClearAll size={18} />
+                </button>
+              </div>
+              {showSettings && (
+                <div className="flex flex-col space-y-10 md:mx-auto md:max-w-xl md:gap-6 md:py-3 md:pt-6 lg:max-w-2xl lg:px-0 xl:max-w-3xl">
+                  <div className="flex h-full flex-col space-y-4 border-b border-neutral-200 p-4 dark:border-neutral-600 md:rounded-lg md:border">
+                    <ModelSelect />
+                  </div>
+                </div>
+              )}
 
-                {selectedConversation?.messages.map((message, index) => (
-                  <MemoizedChatMessage
-                    key={index}
-                    message={message}
-                    messageIndex={index}
-                    onEdit={(editedMessage) => {
-                      setCurrentMessage(editedMessage);
-                      // discard edited message and the ones that come after then resend
-                      handleSend(
-                        editedMessage,
-                        selectedConversation?.messages.length - index,
-                      );
-                    }}
-                  />
-                ))}
-
-                {loading && <ChatLoader />}
-
-                <div
-                  className="h-[162px] bg-white dark:bg-[#343541]"
-                  ref={messagesEndRef}
+              {selectedConversation?.messages.map((message, index) => (
+                <MemoizedChatMessage
+                  key={index}
+                  message={message}
+                  messageIndex={index}
+                  onEdit={(editedMessage) => {
+                    setCurrentMessage(editedMessage);
+                    // discard edited message and the ones that come after then resend
+                    handleSend(
+                      editedMessage,
+                      selectedConversation?.messages.length - index,
+                    );
+                  }}
                 />
-              </>
-            )}
-          </div>
+              ))}
 
-          <ChatInput
-            stopConversationRef={stopConversationRef}
-            textareaRef={textareaRef}
-            onSend={(message) => {
-              setCurrentMessage(message);
-              handleSend(message, 0);
-            }}
-            onScrollDownClick={handleScrollDown}
-            onRegenerate={() => {
-              if (currentMessage) {
-                handleSend(currentMessage, 2);
-              }
-            }}
-            showScrollDownButton={showScrollDownButton}
-          />
-        </>
+              {loading && <ChatLoader />}
+
+              <div
+                className="h-[162px] bg-white dark:bg-[#343541]"
+                ref={messagesEndRef}
+              />
+            </>
+          )}
+        </div>
+
+        <ChatInput
+          stopConversationRef={stopConversationRef}
+          textareaRef={textareaRef}
+          onSend={(message) => {
+            setCurrentMessage(message);
+            handleSend(message, 0);
+          }}
+          onScrollDownClick={handleScrollDown}
+          onRegenerate={() => {
+            if (currentMessage) {
+              handleSend(currentMessage, 2);
+            }
+          }}
+          showScrollDownButton={showScrollDownButton}
+        />
+      </>
     </div>
   );
 });

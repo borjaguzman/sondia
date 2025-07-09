@@ -13,23 +13,33 @@ load_dotenv(find_dotenv())
 def doc_embedding(
     llm_response: str,
     citations: list[dict],
-) -> str:
-    docs = ""
+) -> tuple[str, list[str]]:
+    docs = []
     # Encuentra las citations
     pattern = r"(\[doc\d+\])"
     matches = re.findall(pattern, llm_response)
-    for match in matches:
-        num_pattern = r".*(\d+)"
-        doc_num = int(re.match(num_pattern, match).group(1)) - 1
-        citation = unquote(citations[doc_num]["filepath"])
-        llm_response = llm_response.replace(match, "")
-        docs += f"\n- {citation.split('/', maxsplit=4)[4]}"  # Solo dejamos path sin base_url
-    return llm_response.strip() + "\n\nFuentes:" + docs
+    if matches:
+        for match in matches:
+            num_pattern = r".*(\d+)"
+            doc_num = int(re.match(num_pattern, match).group(1)) - 1
+            citation = unquote(citations[doc_num]["filepath"])
+            llm_response = llm_response.replace(match, "")
+            # Solo dejamos path sin base_url
+            docs.append(citation.split("/", maxsplit=4)[4])
+            full_response = (
+                llm_response
+                + "\n\nFuentes:"
+                + "\n- "
+                + "\n- ".join(doc for doc in docs)
+            )
+        return full_response
+    return llm_response
 
 
 def llm(
-    input,
-    test_mode=True,
+    session_messages: list[dict[str, str]],
+    past_messages: int = 10,
+    test_mode=False,
 ):
     deployment = "gpt-4.1-nano"
     api_key = os.getenv("AZURE_OPENAI_API_KEY")
@@ -49,23 +59,16 @@ def llm(
             completion = json.load(f)
 
     else:
-        prompt = input
+        messages = [{"role": "system", "content": model_instructions}]
+        messages.extend(session_messages[:past_messages])
+
         completion = client.chat.completions.create(
             model=deployment,
             temperature=0.0,
             top_p=1,
             seed=43,
             stream=False,
-            messages=[
-                {
-                    "role": "system",
-                    "content": model_instructions,
-                },
-                {
-                    "role": "user",
-                    "content": prompt,
-                },
-            ],
+            messages=messages,
             extra_body={
                 "data_sources": [
                     {
@@ -101,13 +104,11 @@ def llm(
     )
 
     # Process citations to extract file paths
-    file_paths = [
-        citation["filepath"] for citation in citations if "filepath" in citation
-    ]
+
+    response_content = doc_embedding(response_content, citations=citations)
 
     return {
-        "response": doc_embedding(response_content, citations=citations),
-        "file_paths": file_paths[0],  # top documento en score
+        "response": response_content,
         "total_tokens_in": total_tokens_in,
         "total_tokens_out": total_tokens_out,
     }
@@ -139,10 +140,14 @@ def chatbot_ui():
         # Get AI response
         with st.chat_message("assistant"):
             with st.spinner("Thinking..."):
-                response = llm(prompt)
-                st.markdown(response["response"])
+                full_response = llm(st.session_state.messages)
+
+                st.markdown(full_response["response"])
             st.session_state.messages.append(
-                {"role": "assistant", "content": response["response"]}
+                {
+                    "role": "assistant",
+                    "content": full_response["response"],
+                }
             )
 
     # Add a button to clear chat history

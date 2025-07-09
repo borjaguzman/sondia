@@ -20,7 +20,7 @@ export const ApiStream = async (
   model: string,
   systemPrompt: string,
   temperature: number,
-  prompt: string,
+  messages: Message[],
 ) => {
   let url = `${API_HOST}/llm`;
   
@@ -38,7 +38,7 @@ export const ApiStream = async (
       },
       method: 'POST',
       body: JSON.stringify({
-        input: prompt,
+        messages: messages,
       }),
       signal: controller.signal,
     });
