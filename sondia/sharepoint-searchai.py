@@ -125,34 +125,30 @@ def create_indexer():
     )
     # Index definition
     indexer_data = {
-        "name": "sharepoint-indexer",
-        "dataSourceName": "sharepoint-datasource",
-        "skillsetName": "rag-sondia-latest-skillset",
-        "targetIndexName": "rag-sondia-latest",
-        "disabled": None,
-        "schedule": None,
-        "parameters": {
-            "batchSize": None,
-            "maxFailedItems": None,
-            "maxFailedItemsPerBatch": None,
-            "configuration": {
-                "dataToExtract": "contentAndMetadata",
-                "parsingMode": "default",
-                "failOnUnsupportedContentType": False,
-                "failOnUnprocessableDocument": False,
-            },
-        },
-        "fieldMappings": [
-            {
-                "sourceFieldName": "metadata_storage_name",
-                "targetFieldName": "title",
-                "mappingFunction": None,
-            }
-        ],
-        "outputFieldMappings": [],
-        "cache": None,
-        "encryptionKey": None,
-    }
+    "name" : "sharepoint-indexer",
+    "dataSourceName" : "sharepoint-datasource",
+    "targetIndexName" : "sharepoint-index",
+    "parameters": {
+    "batchSize": None,
+    "maxFailedItems": None,
+    "maxFailedItemsPerBatch": None,
+    "configuration": {
+        "indexedFileNameExtensions" : ".pdf, .docx",
+        "excludedFileNameExtensions" : ".png, .jpg",
+        "dataToExtract": "contentAndMetadata"
+      }
+    },
+    "schedule" : { },
+    "fieldMappings" : [
+        { 
+          "sourceFieldName" : "metadata_spo_site_library_item_id", 
+          "targetFieldName" : "id", 
+          "mappingFunction" : { 
+            "name" : "base64Encode" 
+          } 
+         }
+    ]
+}
 
     # Make the POST request
     response = requests.post(url, headers=headers, data=json.dumps(indexer_data))
@@ -169,4 +165,4 @@ def create_indexer():
 if __name__ == "__main__":
     # create_data_source()
     # create_index()
-    create_indexer()
+    #create_indexer()
