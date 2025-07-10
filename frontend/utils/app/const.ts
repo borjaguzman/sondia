@@ -4,7 +4,7 @@ export const DEFAULT_SYSTEM_PROMPT =
 
 export const API_HOST =
   // Use custom API endpoint
-  (typeof process !== 'undefined' && process.env.API_HOST) || 'http://localhost:8000';
+  (typeof process !== 'undefined' && process.env.API_HOST) || 'https://backend-sondia-g8arfterezdraxaw.brazilsouth-01.azurewebsites.net/';
 
 export const DEFAULT_TEMPERATURE = 
   parseFloat(process.env.NEXT_PUBLIC_DEFAULT_TEMPERATURE || "1");
