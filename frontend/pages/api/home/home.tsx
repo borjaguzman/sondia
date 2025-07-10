@@ -311,7 +311,7 @@ const Home = ({ defaultModelId }: Props) => {
           name="viewport"
           content="height=device-height ,width=device-width, initial-scale=1, user-scalable=no"
         />
-        <link rel="icon" href="/favicon.png" />
+        <link rel="icon" href="/Sondia_V2.png" />
       </Head>
       {selectedConversation && (
         <main
@@ -331,7 +331,7 @@ const Home = ({ defaultModelId }: Props) => {
               <Chat stopConversationRef={stopConversationRef} />
             </div>
 
-            <Promptbar />
+            
           </div>
         </main>
       )}
